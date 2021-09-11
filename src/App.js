@@ -1,24 +1,43 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
 import './App.css';
+import Header from './components/Header'
+import Footer from './components/Footer';
+import Producto from './components/Producto';
 
 function App() {
+
+  // crear listado de productos para mostrar en la aplicación
+  const [ productos, guardarProductos ] = useState([
+    { id: 1, nombre: 'Remeras de ReactJS', precio: 500 },
+    { id: 2, nombre: 'Remeras de NodeJS', precio: 1000 },
+    { id: 3, nombre: 'Remeras de JavaScript', precio: 800 },
+    { id: 4, nombre: 'Remeras de Python', precio: 900 },
+  ]);
+
+
+    // Obtener fecha actual
+    const fecha = new Date().getFullYear()
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>
+        <div className="App">
+          <Header
+            titulo="Tienda Virtual"
+           />
+          <h1>Lista de Remeras</h1>
+          { productos.map(producto => (
+           <Producto
+              producto={producto}
+            />
+
+          ))}
+          <Footer
+           fecha={fecha}
+           />
+        </div>
+      </div>
   );
 }
 
